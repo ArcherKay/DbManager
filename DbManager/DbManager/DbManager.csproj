@@ -498,6 +498,9 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="备份\Index.cshtml" />
+    <Content Include="备份\Query.cshtml" />
+    <Content Include="备份\SqlTools.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
