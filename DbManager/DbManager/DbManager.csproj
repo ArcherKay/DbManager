@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{48F99B71-9BC6-4427-B837-6B2D1C44E29B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DbManager</RootNamespace>
+    <AssemblyName>DbManager</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.5.1\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.5.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.5.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.5.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.5.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.5.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\admintle.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\skins.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\boy.svg" />
+    <Content Include="Content\js\adminlte.min.js" />
+    <Content Include="Content\js\bootstrap-table\bootstrao-table-check.css" />
+    <Content Include="Content\js\bootstrap-table\bootstrap-table-zh-CN.min.js" />
+    <Content Include="Content\js\bootstrap-table\bootstrap-table.min.css" />
+    <Content Include="Content\js\bootstrap-table\bootstrap-table.min.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\echarts.min.js" />
+    <Content Include="Content\js\fastclick.js" />
+    <Content Include="Content\js\ftcb.common.js" />
+    <Content Include="Content\js\ftcb.region.js" />
+    <Content Include="Content\js\ftcb.upload.js" />
+    <Content Include="Content\js\icheck\all.css" />
+    <Content Include="Content\js\icheck\flat\aero%402x.png" />
+    <Content Include="Content\js\icheck\flat\aero.css" />
+    <Content Include="Content\js\icheck\flat\aero.png" />
+    <Content Include="Content\js\icheck\flat\blue%402x.png" />
+    <Content Include="Content\js\icheck\flat\blue.css" />
+    <Content Include="Content\js\icheck\flat\blue.png" />
+    <Content Include="Content\js\icheck\flat\flat%402x.png" />
+    <Content Include="Content\js\icheck\flat\flat.css" />
+    <Content Include="Content\js\icheck\flat\flat.png" />
+    <Content Include="Content\js\icheck\flat\green%402x.png" />
+    <Content Include="Content\js\icheck\flat\green.css" />
+    <Content Include="Content\js\icheck\flat\green.png" />
+    <Content Include="Content\js\icheck\flat\grey%402x.png" />
+    <Content Include="Content\js\icheck\flat\grey.css" />
+    <Content Include="Content\js\icheck\flat\grey.png" />
+    <Content Include="Content\js\icheck\flat\orange%402x.png" />
+    <Content Include="Content\js\icheck\flat\orange.css" />
+    <Content Include="Content\js\icheck\flat\orange.png" />
+    <Content Include="Content\js\icheck\flat\pink%402x.png" />
+    <Content Include="Content\js\icheck\flat\pink.css" />
+    <Content Include="Content\js\icheck\flat\pink.png" />
+    <Content Include="Content\js\icheck\flat\purple%402x.png" />
+    <Content Include="Content\js\icheck\flat\purple.css" />
+    <Content Include="Content\js\icheck\flat\purple.png" />
+    <Content Include="Content\js\icheck\flat\red%402x.png" />
+    <Content Include="Content\js\icheck\flat\red.css" />
+    <Content Include="Content\js\icheck\flat\red.png" />
+    <Content Include="Content\js\icheck\flat\yellow%402x.png" />
+    <Content Include="Content\js\icheck\flat\yellow.css" />
+    <Content Include="Content\js\icheck\flat\yellow.png" />
+    <Content Include="Content\js\icheck\flat\_all.css" />
+    <Content Include="Content\js\icheck\futurico\futurico%402x.png" />
+    <Content Include="Content\js\icheck\futurico\futurico.css" />
+    <Content Include="Content\js\icheck\futurico\futurico.png" />
+    <Content Include="Content\js\icheck\icheck.min.js" />
+    <Content Include="Content\js\icheck\line\aero.css" />
+    <Content Include="Content\js\icheck\line\blue.css" />
+    <Content Include="Content\js\icheck\line\green.css" />
+    <Content Include="Content\js\icheck\line\grey.css" />
+    <Content Include="Content\js\icheck\line\line%402x.png" />
+    <Content Include="Content\js\icheck\line\line.css" />
+    <Content Include="Content\js\icheck\line\line.png" />
+    <Content Include="Content\js\icheck\line\orange.css" />
+    <Content Include="Content\js\icheck\line\pink.css" />
+    <Content Include="Content\js\icheck\line\purple.css" />
+    <Content Include="Content\js\icheck\line\red.css" />
+    <Content Include="Content\js\icheck\line\yellow.css" />
+    <Content Include="Content\js\icheck\line\_all.css" />
+    <Content Include="Content\js\icheck\minimal\aero%402x.png" />
+    <Content Include="Content\js\icheck\minimal\aero.css" />
+    <Content Include="Content\js\icheck\minimal\aero.png" />
+    <Content Include="Content\js\icheck\minimal\blue%402x.png" />
+    <Content Include="Content\js\icheck\minimal\blue.css" />
+    <Content Include="Content\js\icheck\minimal\blue.png" />
+    <Content Include="Content\js\icheck\minimal\green%402x.png" />
+    <Content Include="Content\js\icheck\minimal\green.css" />
+    <Content Include="Content\js\icheck\minimal\green.png" />
+    <Content Include="Content\js\icheck\minimal\grey%402x.png" />
+    <Content Include="Content\js\icheck\minimal\grey.css" />
+    <Content Include="Content\js\icheck\minimal\grey.png" />
+    <Content Include="Content\js\icheck\minimal\minimal%402x.png" />
+    <Content Include="Content\js\icheck\minimal\minimal.css" />
+    <Content Include="Content\js\icheck\minimal\minimal.png" />
+    <Content Include="Content\js\icheck\minimal\orange%402x.png" />
+    <Content Include="Content\js\icheck\minimal\orange.css" />
+    <Content Include="Content\js\icheck\minimal\orange.png" />
+    <Content Include="Content\js\icheck\minimal\pink%402x.png" />
+    <Content Include="Content\js\icheck\minimal\pink.css" />
+    <Content Include="Content\js\icheck\minimal\pink.png" />
+    <Content Include="Content\js\icheck\minimal\purple%402x.png" />
+    <Content Include="Content\js\icheck\minimal\purple.css" />
+    <Content Include="Content\js\icheck\minimal\purple.png" />
+    <Content Include="Content\js\icheck\minimal\red%402x.png" />
+    <Content Include="Content\js\icheck\minimal\red.css" />
+    <Content Include="Content\js\icheck\minimal\red.png" />
+    <Content Include="Content\js\icheck\minimal\yellow%402x.png" />
+    <Content Include="Content\js\icheck\minimal\yellow.css" />
+    <Content Include="Content\js\icheck\minimal\yellow.png" />
+    <Content Include="Content\js\icheck\minimal\_all.css" />
+    <Content Include="Content\js\icheck\polaris\polaris%402x.png" />
+    <Content Include="Content\js\icheck\polaris\polaris.css" />
+    <Content Include="Content\js\icheck\polaris\polaris.png" />
+    <Content Include="Content\js\icheck\square\aero%402x.png" />
+    <Content Include="Content\js\icheck\square\aero.css" />
+    <Content Include="Content\js\icheck\square\aero.png" />
+    <Content Include="Content\js\icheck\square\blue%402x.png" />
+    <Content Include="Content\js\icheck\square\blue.css" />
+    <Content Include="Content\js\icheck\square\blue.png" />
+    <Content Include="Content\js\icheck\square\green%402x.png" />
+    <Content Include="Content\js\icheck\square\green.css" />
+    <Content Include="Content\js\icheck\square\green.png" />
+    <Content Include="Content\js\icheck\square\grey%402x.png" />
+    <Content Include="Content\js\icheck\square\grey.css" />
+    <Content Include="Content\js\icheck\square\grey.png" />
+    <Content Include="Content\js\icheck\square\orange%402x.png" />
+    <Content Include="Content\js\icheck\square\orange.css" />
+    <Content Include="Content\js\icheck\square\orange.png" />
+    <Content Include="Content\js\icheck\square\pink%402x.png" />
+    <Content Include="Content\js\icheck\square\pink.css" />
+    <Content Include="Content\js\icheck\square\pink.png" />
+    <Content Include="Content\js\icheck\square\purple%402x.png" />
+    <Content Include="Content\js\icheck\square\purple.css" />
+    <Content Include="Content\js\icheck\square\purple.png" />
+    <Content Include="Content\js\icheck\square\red%402x.png" />
+    <Content Include="Content\js\icheck\square\red.css" />
+    <Content Include="Content\js\icheck\square\red.png" />
+    <Content Include="Content\js\icheck\square\square%402x.png" />
+    <Content Include="Content\js\icheck\square\square.css" />
+    <Content Include="Content\js\icheck\square\square.png" />
+    <Content Include="Content\js\icheck\square\yellow%402x.png" />
+    <Content Include="Content\js\icheck\square\yellow.css" />
+    <Content Include="Content\js\icheck\square\yellow.png" />
+    <Content Include="Content\js\icheck\square\_all.css" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\jquery.slimscroll.min.js" />
+    <Content Include="Content\js\layer\layer.js" />
+    <Content Include="Content\js\layer\mobile\layer.js" />
+    <Content Include="Content\js\layer\mobile\need\layer.css" />
+    <Content Include="Content\js\layer\theme\default\icon-ext.png" />
+    <Content Include="Content\js\layer\theme\default\icon.png" />
+    <Content Include="Content\js\layer\theme\default\layer.css" />
+    <Content Include="Content\js\layer\theme\default\loading-0.gif" />
+    <Content Include="Content\js\layer\theme\default\loading-1.gif" />
+    <Content Include="Content\js\layer\theme\default\loading-2.gif" />
+    <Content Include="Content\js\pace\pace.min.css" />
+    <Content Include="Content\js\pace\pace.min.js" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-barber-shop.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-big-counter.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-bounce.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-center-atom.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-center-circle.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-center-radar.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-center-simple.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-corner-indicator.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-fill-left.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-flash.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-flat-top.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-loading-bar.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-mac-osx.css" />
+    <Content Include="Content\js\pace\themes\black\pace-theme-minimal.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-barber-shop.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-big-counter.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-bounce.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-center-atom.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-center-circle.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-center-radar.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-center-simple.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-corner-indicator.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-fill-left.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-flash.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-flat-top.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-loading-bar.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-mac-osx.css" />
+    <Content Include="Content\js\pace\themes\blue\pace-theme-minimal.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-barber-shop.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-big-counter.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-bounce.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-center-atom.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-center-circle.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-center-radar.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-center-simple.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-corner-indicator.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-fill-left.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-flash.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-flat-top.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-loading-bar.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-mac-osx.css" />
+    <Content Include="Content\js\pace\themes\green\pace-theme-minimal.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-barber-shop.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-big-counter.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-bounce.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-center-atom.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-center-circle.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-center-radar.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-center-simple.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-corner-indicator.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-fill-left.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-flash.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-flat-top.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-loading-bar.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-mac-osx.css" />
+    <Content Include="Content\js\pace\themes\orange\pace-theme-minimal.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-barber-shop.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-big-counter.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-bounce.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-center-atom.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-center-circle.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-center-radar.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-center-simple.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-corner-indicator.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-fill-left.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-flash.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-flat-top.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-loading-bar.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-mac-osx.css" />
+    <Content Include="Content\js\pace\themes\pink\pace-theme-minimal.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-barber-shop.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-big-counter.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-bounce.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-center-atom.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-center-circle.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-center-radar.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-center-simple.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-corner-indicator.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-fill-left.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-flash.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-flat-top.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-loading-bar.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-mac-osx.css" />
+    <Content Include="Content\js\pace\themes\purple\pace-theme-minimal.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-barber-shop.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-big-counter.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-bounce.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-center-atom.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-center-circle.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-center-radar.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-center-simple.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-corner-indicator.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-fill-left.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-flash.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-flat-top.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-loading-bar.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-mac-osx.css" />
+    <Content Include="Content\js\pace\themes\red\pace-theme-minimal.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-barber-shop.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-big-counter.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-bounce.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-center-atom.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-center-circle.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-center-radar.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-center-simple.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-corner-indicator.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-fill-left.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-flash.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-flat-top.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-loading-bar.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-mac-osx.css" />
+    <Content Include="Content\js\pace\themes\silver\pace-theme-minimal.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-barber-shop.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-big-counter.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-bounce.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-center-atom.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-center-circle.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-center-radar.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-center-simple.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-corner-indicator.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-fill-left.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-flash.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-flat-top.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-loading-bar.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-mac-osx.css" />
+    <Content Include="Content\js\pace\themes\white\pace-theme-minimal.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-barber-shop.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-big-counter.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-bounce.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-center-atom.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-center-circle.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-center-radar.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-center-simple.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-corner-indicator.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-fill-left.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-flash.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-flat-top.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-loading-bar.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-mac-osx.css" />
+    <Content Include="Content\js\pace\themes\yellow\pace-theme-minimal.css" />
+    <Content Include="Content\js\select2\select2.full.min.js" />
+    <Content Include="Content\js\select2\select2.min.css" />
+    <Content Include="Content\js\select2\select2.min.js" />
+    <Content Include="Content\js\select2\zh-CN.js" />
+    <Content Include="Content\js\yang.common.js" />
+    <Content Include="Content\js\yang.menu.js" />
+    <Content Include="备份\js\bootstrap-select.js" />
+    <Content Include="备份\js\bootstrap-toggle.min.js" />
+    <Content Include="备份\css\bootstrap.min.css" />
+    <Content Include="备份\css\font-awesome.min.css" />
+    <Content Include="备份\fonts\fontawesome-webfont.svg" />
+    <Content Include="备份\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="备份\js\jquery.min.js" />
+    <Content Include="备份\js\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="备份\js\bootstrap.min.js" />
+    <Content Include="备份\js\plugins.js" />
+    <Content Include="备份\css\responsive.css" />
+    <Content Include="备份\css\root.css" />
+    <Content Include="备份\css\shortcuts.css" />
+    <Content Include="备份\js\Sql.js" />
+    <Content Include="备份\css\style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="备份\fonts\fontawesome-webfont.eot" />
+    <Content Include="备份\fonts\fontawesome-webfont.ttf" />
+    <Content Include="备份\fonts\fontawesome-webfont.woff" />
+    <Content Include="备份\fonts\fontawesome-webfont.woff2" />
+    <Content Include="备份\fonts\FontAwesome.otf" />
+    <Content Include="备份\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="备份\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="备份\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="备份\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="packages.config" />
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50836</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50836/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
