@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Sql脚本工具";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="pad margin no-print">
+    <div class="callout callout-warning" style="margin-bottom: 0!important;">
+        <h4><i class="fa fa-hacker-news"></i> &nbsp;脚本生成工具箱</h4>
+    </div>
+</div>
+<section class="invoice">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#tables" aria-controls="home" role="tab" data-toggle="tab">创建表脚本</a></li>
+                <li role="presentation"><a href="#fields" aria-controls="messages" role="tab" data-toggle="tab">新增字段脚本</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="tables">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" onclick="Build()" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">
+                                一键生成脚本
+                            </button>
+                            <button type="button" onclick="SqlView()" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">
+                                创建表示例模板
+                            </button>
+                            &nbsp; &nbsp; &nbsp;<i class="fa fa-warning text-yellow"></i>&nbsp;温馨提示：固定字段： Id / AddTime / ModifyTime 自动生成无需重复创建
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-table"></i>
+                                </div>
+                                <input type="text" class="form-control" id="inpTableName" style="width: 200px;" placeholder="创建的表名">
+                                <input type="text" class="form-control" id="inpTableDesc" style="width: 220px;" placeholder="表的描述">
+                                <input type="text" class="form-control" id="inpIndexName" style="width: 220px;" placeholder="索引名">
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel-title">
+                                表结构&nbsp;&nbsp;
+                                <a class="btn" id="btnAddColumn" onclick="AddTr('tb', -1)"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
+                                <a class="btn" id="btnDelColumn" onclick="delTr2()"><i class="fa fa-minus-square-o"> 删除字段</i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <table id="tb" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>字段名</th>
+                                        <th>数据类型</th>
+                                        <th>字段描述</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="fields">
+                    <div>
+                        <button type="button" onclick="Build2() " class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">
+                            一键生成脚本
+                        </button>
+                        <button type="button" onclick="SqlView2()" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">
+                            新增表字段示例模板
+                        </button>
+
+                    </div>
+                    <hr />
+                    <div>
+                        <div class="form-group">
+
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-table"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="inpAlterTableName" style="width: 200px;" placeholder="要修改的表名称">
+                                </div>
+                            </div>
+                        </div>
+                        <!--自动生成创建表SQL Script start-->
+                        <div class="panel panel-default">
+                            <div class="panel-title">
+                                表结构&nbsp;&nbsp;
+                                <a class="btn" id="btnAddColumn1" onclick="AddTr('tb1', -1)"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
+                                <a class="btn" id="btnDelColumn1" onclick="delTr2()"><i class="fa  fa-minus-square-o"> 删除字段</i></a>
+                            </div>
+
+                            <div class="panel-body">
+                                <table id="tb1" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>字段名</th>
+                                            <th>数据类型</th>
+                                            <th>字段描述</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <!--自动生成创建表SQL Script end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade bs-example-modal-lg" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel1"><i class="fa fa-code"></i>&nbsp;<span id="spWinTitle">SQL脚本预览窗口</span> </h4>
+            </div>
+            <div class="modal-body">
+                <span id="spCreateSql">
+                </span>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">创建表脚本</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">放弃生成</button>
+                <button type="button" class="btn btn-primary">一键生成</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/ViewScripts/sqltools.js"></script>
+

@@ -1,4 +1,36 @@
-﻿<!DOCTYPE html>
+﻿<script>
+    //                            _ooOoo_
+    //                           o8888888o
+    //                           88" . "88
+    //                           (| -_- |)
+    //                            O\ = /O
+    //                        ____/`---'\____
+    //                      .   ' \\| |// `.
+    //                       / \\||| : |||// \
+    //                     / _||||| -:- |||||- \
+    //                       | | \\\ - /// | |
+    //                     | \_| ''\---/'' | |
+    //                      \ .-\__ `-` ___/-. /
+    //                   ___`. .' /--.--\ `. . __
+    //                ."" '< `.___\_<|>_/___.' >'"".
+    //               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+    //                 \ \ `-. \_ __\ /__ _/ .-` / /
+    //         ======`-.____`-.___\_____/___.-`____.-'======
+    //                            `=---='
+    //
+    //         .............................................
+    //                  佛祖保佑             永无BUG
+    //          佛曰:
+    //                  写字楼里写字间，写字间里程序员；
+    //                  程序人员写程序，又拿程序换酒钱。
+    //                  酒醒只在网上坐，酒醉还来网下眠；
+    //                  酒醉酒醒日复日，网上网下年复年。
+    //                  但愿老死电脑间，不愿鞠躬老板前；
+    //                  奔驰宝马贵者趣，公交自行程序员。
+    //                  别人笑我忒疯癫，我笑自己命太贱；
+    //                  不见满街漂亮妹，哪个归得程序员？
+</script>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,10 +41,8 @@
     <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/css/admintle.min.css">
     <link rel="stylesheet" href="~/Content/css/skins.min.css">
-    <link rel="stylesheet" href="~/Content/js/icheck/all.css">
     <link rel="stylesheet" href="~/Content/js/bootstrap-table/bootstrap-table.min.css">
     <link rel="stylesheet" href="~/Content/js/bootstrap-table/bootstrao-table-check.css">
-    <link rel="stylesheet" href="~/Content/js/pace/pace.min.css">
 </head>
 <body class="hold-transition skin-purple sidebar-mini fixed">
     <div class="wrapper">
@@ -33,7 +63,10 @@
                             <a href="#" data-toggle="control-sidebar"><i class="fa fa-refresh"></i>F5</a>
                         </li>
                         <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i>源码获取</a>
+                            <a href="#" data-toggle="modal" data-target="#myNoticeModal">
+                                <i class="fa fa-bell-o"></i>公告
+                                <span class="label label-warning">1</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -47,16 +80,15 @@
                         <img src="~/Content/images/boy.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>小二</p>
-                        <a href="javascript:;"><i class="fa fa-circle text-success"></i> 在线</a>
+                        <p>数据库小二</p>
                     </div>
                 </div>
                 <ul class="sidebar-menu">
                     <li class="header">主菜单</li>
-                    <li><a href="/Home/Index"><i class="fa fa-circle-o text-red"></i><span>数据库配置</span></a></li>
-                    <li><a href="/Home/Query"><i class="fa fa-circle-o text-yellow"></i><span>表字段查询</span></a></li>
-                    <li><a href="/Home/SqlTools"><i class="fa fa-circle-o text-aqua"></i><span>Sql脚本工具箱</span></a></li>
-                    <li><a href="/Home/CsTools"><i class="fa fa-circle-o text-green"></i><span>代码生成工具箱</span></a></li>
+                    <li><a href="/Home/Index"><i class="fa fa-circle-o text-aqua"></i><span>数据库配置</span></a></li>
+                    <li><a href="/Home/Query"><i class="fa fa-circle-o text-greentext-yellow"></i><span>表字段查询</span></a></li>
+                    <li><a href="/Home/SqlTools"><i class="fa fa-circle-o text-yellow"></i><span>Sql脚本工具箱</span></a></li>
+                    <li><a href="/Home/CsTools"><i class="fa fa-circle-o  text-red"></i><span>代码生成工具箱</span></a></li>
                 </ul>
             </section>
         </aside>
@@ -64,20 +96,20 @@
         <div class="content-wrapper">
             @RenderBody()
         </div>
-
-        <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                adminTle V1.0
-            </div>
-            <strong>Copyright &copy; 2018 <a href="#">杨隆健</a>.</strong> All rights reserved.
-        </footer>
     </div>
 
     <!--弹窗 start-->
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-sm">
+    <div class="modal fade" id="myNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myNoticeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <i class="fa fa-cloud-download"></i>&nbsp;&nbsp;SVN：https://drp-xuwx/svn/DBCenter
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myNoticeModalLabel">系统公告</h4>
+                </div>
+                <div class="modal-body">
+                    <span id="noticeContent">
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -85,16 +117,11 @@
 
     <script src="~/Content/js/jquery.min.js"></script>
     <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/adminlte.min.js"></script>
     <script src="~/Content/js/jquery.slimscroll.min.js"></script>
     <script src="~/Content/js/fastclick.js"></script>
     <script src="~/Content/js/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="~/Content/js/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
-    <script src="~/Content/js/layer/layer.js"></script>
-    <script src="~/Content/js/icheck/icheck.min.js"></script>
-    <script src="~/Content/js/adminlte.min.js"></script>
-    <script src="~/Content/js/yang.common.js"></script>
-    <script src="~/Content/js/pace/pace.min.js"></script>
+    <script src="~/ViewScripts/ad.js"></script>
 </body>
 </html>
-
-

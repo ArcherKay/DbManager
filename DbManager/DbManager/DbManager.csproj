@@ -443,21 +443,10 @@
     <Content Include="Content\js\select2\zh-CN.js" />
     <Content Include="Content\js\yang.common.js" />
     <Content Include="Content\js\yang.menu.js" />
-    <Content Include="备份\js\bootstrap-select.js" />
-    <Content Include="备份\js\bootstrap-toggle.min.js" />
-    <Content Include="备份\css\bootstrap.min.css" />
-    <Content Include="备份\css\font-awesome.min.css" />
-    <Content Include="备份\fonts\fontawesome-webfont.svg" />
-    <Content Include="备份\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="备份\js\jquery.min.js" />
-    <Content Include="备份\js\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="备份\js\bootstrap.min.js" />
-    <Content Include="备份\js\plugins.js" />
-    <Content Include="备份\css\responsive.css" />
-    <Content Include="备份\css\root.css" />
-    <Content Include="备份\css\shortcuts.css" />
-    <Content Include="备份\js\Sql.js" />
-    <Content Include="备份\css\style.css" />
+    <Content Include="ViewScripts\ad.js" />
+    <Content Include="ViewScripts\index.js" />
+    <Content Include="ViewScripts\query.js" />
+    <Content Include="ViewScripts\sqltools.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -477,15 +466,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="备份\fonts\fontawesome-webfont.eot" />
-    <Content Include="备份\fonts\fontawesome-webfont.ttf" />
-    <Content Include="备份\fonts\fontawesome-webfont.woff" />
-    <Content Include="备份\fonts\fontawesome-webfont.woff2" />
-    <Content Include="备份\fonts\FontAwesome.otf" />
-    <Content Include="备份\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="备份\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="备份\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="备份\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
@@ -498,9 +478,9 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="备份\Index.cshtml" />
-    <Content Include="备份\Query.cshtml" />
-    <Content Include="备份\SqlTools.cshtml" />
+    <Content Include="Views\Home\Query.cshtml" />
+    <Content Include="Views\Home\SqlTools.cshtml" />
+    <Content Include="Views\Home\CsTools.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
