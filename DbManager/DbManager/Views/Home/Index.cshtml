@@ -1,22 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "数据库链接配置";
+    ViewBag.Title = "数据库配置";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 <div class="pad margin no-print">
     <div class="callout callout-info" style="margin-bottom: 0!important;">
-        <h4><i class="fa fa-info"></i>  欢迎登录数据库查询中心:</h4>
-        仅为提高工作效率而写
+        <h4><i class="fa fa-database"></i> 数据库配置:</h4>
+        自定义配置你所要查询的数据库
     </div>
 </div>
 <section class="invoice">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="page-header">
-                <i class="fa fa-database"></i> 数据库配置 <small>自定义配置你所要查询的数据库</small>
-            </h2>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-2 col-md-offset-1">
             <h5><i class="fa fa-check text-green"></i>自定义配置连接</h5><br />
@@ -26,8 +19,8 @@
         <div class="col-md-6">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label for="currenDbName" class="col-sm-2 control-label form-label">当前数据库</label>
-                    <div class="col-sm-10">
+                    <label for="currenDbName" class="col-sm-4 control-label form-label">当前数据库</label>
+                    <div class="col-sm-8">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-server"></i></div>
                             <input type="text" class="form-control" id="currenDbName" readonly>
@@ -35,52 +28,55 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="DbServer" class="col-sm-2 control-label form-label">服务器地址</label>
-                    <div class="col-sm-10">
+                    <label for="dbServer" class="col-sm-4 control-label form-label">服务器地址</label>
+                    <div class="col-sm-8">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-server"></i></div>
-                            <input type="text" class="form-control" id="DbServer" placeholder="如：127.0.0.1">
+                            <input type="text" class="form-control" id="dbServer" placeholder="如：127.0.0.1">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="DbName" class="col-sm-2 control-label form-label">数据库名称</label>
-                    <div class="col-sm-10">
+                    <label for="dbName" class="col-sm-4 control-label form-label">数据库名称</label>
+                    <div class="col-sm-8">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-database"></i></div>
-                            <input type="text" class="form-control" id="DbName" placeholder="数据库名称">
+                            <input type="text" class="form-control" id="dbName" placeholder="数据库名称">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="DbLoginName" class="col-sm-2 control-label form-label">登录名</label>
-                    <div class="col-sm-10">
+                    <label for="dbLoginUser" class="col-sm-4 control-label form-label">登录名</label>
+                    <div class="col-sm-8">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                            <input type="text" class="form-control" id="DbLoginName" placeholder="数据库登录名">
+                            <input type="text" class="form-control" id="dbLoginUser" placeholder="数据库登录名">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="DbPwd" class="col-sm-2 control-label form-label">密码</label>
-                    <div class="col-sm-10">
+                    <label for="dbLoginPwd" class="col-sm-4 control-label form-label">密码</label>
+                    <div class="col-sm-8">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-circle"></i></div>
-                            <input type="password" class="form-control" id="DbPwd" placeholder="数据库登录密码">
+                            <input type="password" class="form-control" id="dbLoginPwd" placeholder="数据库登录密码">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                        <button type="button" class="btn btn-success pull-right">
+                    <div class="col-sm-12">
+                        <button type="button" id="btnSave" class="btn btn-success pull-right">
                             <i class="fa fa-save"></i> 保存配置
                         </button>
-                        <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                        <button type="button" id="btnConectedTest" class="btn btn-primary pull-right" style="margin-right: 5px;">
                             <i class="fa fa-bug"></i> 连接测试
                         </button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </section>
+<script src="~/Content/js/jquery.min.js"></script>
 <script src="~/ViewScripts/index.js"></script>
