@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace DbManager.Common
@@ -28,6 +29,32 @@ namespace DbManager.Common
         {
             var connectStr = $"Data Source={Config.GetValue("DbServerAddress")};Initial Catalog={Config.GetValue("DbName")};User ID={Config.GetValue("DbLoginUser")};Password={Config.GetValue("DbLoginPwd")}";
             return connectStr;
+        }
+
+        public static void OpenConn(SqlConnection conn)
+        {
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
+        }
+        public static int ExecuteNonQuery(SqlConnection connection, string cmdText)
+        {
+            return ExecuteNonQuery(connection, CommandType.Text, cmdText, null);
+        }
+        public static int ExecuteNonQuery(SqlConnection connection, string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteNonQuery(connection, CommandType.Text, cmdText, commandParameters);
+        }
+        public static int ExecuteNonQuery(SqlConnection connection, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandTimeout = 3600;
+            PrepareCommand(cmd, connection, null, cmdType, cmdText, commandParameters);
+            int val = cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+            CloseConn(connection);
+            return val;
         }
 
         public static DataTable ExecuteDataTable(SqlConnection connection, string commandText)
@@ -115,6 +142,46 @@ namespace DbManager.Common
             }
         }
 
+        /// <summary>
+        /// 更新表说明
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="desc"></param>
+        public static string TableDescUpdate(string tableName, string desc)
+        {
+            string message = "修改成功";
+            using (SqlConnection conn = CreateConn())
+            {
+                OpenConn(conn);
+                try
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    sb.AppendFormat(
+                        "IF ((SELECT COUNT(1) from fn_listextendedproperty('MS_Description','SCHEMA', N'dbo','TABLE', N'{0}',NULL, NULL)) > 0) ",
+                        tableName);
+
+                    sb.AppendFormat(
+                        "EXEC sp_updateextendedproperty N'MS_Description',N'{0}','SCHEMA',N'dbo','TABLE',N'{1}',NULL,NULL ", desc, tableName);
+
+                    sb.Append("ELSE ");
+
+                    sb.AppendFormat(
+                        "EXEC sp_addextendedproperty N'MS_Description',N'{0}','SCHEMA',N'dbo','TABLE',N'{1}',NULL,NULL ", desc, tableName);
+
+                    ExecuteNonQuery(conn, sb.ToString());              
+                }
+                catch (Exception ex)
+                {
+                    message = ex.Message;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+                return message;
+            }
+        }
 
         /// <summary>
         /// 根据表名获取表结构
@@ -148,6 +215,49 @@ namespace DbManager.Common
 
             }
 
+        }
+
+        /// <summary>
+        /// 更新字段描述
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="fieldName"></param>
+        /// <param name="desc"></param>
+        /// <returns></returns>
+        public static string FieldDescUpdate(string tableName, string fieldName, string desc)
+        {
+            string message = "修改成功";
+            using (SqlConnection conn = CreateConn())
+            {
+                OpenConn(conn);
+                try
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendFormat(
+                        "IF ((SELECT COUNT(1) from fn_listextendedproperty('MS_Description','SCHEMA', N'dbo','TABLE', N'{0}','COLUMN', N'{1}')) > 0) ",
+                        tableName, fieldName);
+
+                    sb.AppendFormat(
+                        "EXEC sp_updateextendedproperty N'MS_Description',N'{2}','SCHEMA',N'dbo','TABLE',N'{0}','COLUMN',N'{1}' ", tableName, fieldName, desc);
+
+                    sb.Append("ELSE ");
+
+                    sb.AppendFormat(
+                        "EXEC sp_addextendedproperty N'MS_Description',N'{0}','SCHEMA',N'dbo','TABLE',N'{1}','COLUMN',N'{2}' ",
+                        desc, tableName, fieldName);
+
+                    ExecuteNonQuery(conn, sb.ToString());           
+                }
+                catch (Exception ex)
+                {
+                    message = ex.Message;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+            return message;
         }
     }
 }

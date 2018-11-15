@@ -18,16 +18,16 @@ var init=function() {
 //校验字段
 var checkData = function () {
     if ($("#dbServer").val() == "") {
-        alert("请填写服务器地址"); return true;
+        db.error("请填写服务器地址"); return true;
     }
     if ($("#dbName").val() == "") {
-        alert("请填写数据库名称"); return true;
+        db.error("请填写数据库名称"); return true;
     }
     if ($("#dbLoginUser").val() == "") {
-        alert("请填写数据库登录账号"); return true;
+        db.error("请填写数据库登录账号"); return true;
     }
     if ($("#dbLoginPwd").val() == "") {
-        alert("请填写数据库登录密码"); return true;
+        db.error("请填写数据库登录密码"); return true;
     }
     return false;
 }
@@ -48,9 +48,15 @@ var getInputConfig = function () {
 var ConnectedTest = function () {
     $("#btnConectedTest").click(function () {
         if (checkData()) return false;
+        db.startLoding();
         var postData = getInputConfig();
-        $.getJSON("/Home/ConnectedTest", postData, function (msg) {
-            alert(msg);
+        $.getJSON("/Home/ConnectedTest", postData, function (d) {
+            db.closeLoding();
+            if (d.result) {
+                db.success(d.message);
+                return false;
+            }
+            db.error(d.message);
         });
     });
 
@@ -61,9 +67,14 @@ var SaveCurrentDBSet = function () {
     $("#btnSave").click(function () {
         if (checkData()) return false;
         var postData = getInputConfig();
-        $.getJSON("/Home/SaveCurrentDBSet", postData, function (msg) {
-            alert(msg);
-            $("#currenDbName").val($("#dbName").val());
+        $.getJSON("/Home/SaveCurrentDBSet", postData, function (d) {
+            db.closeLoding();
+            if (d.result) {
+                $("#currenDbName").val($("#dbName").val());
+                db.success(d.message);
+                return false;
+            }
+            db.error(d.message);
         });
     });
 }

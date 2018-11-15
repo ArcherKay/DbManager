@@ -41,19 +41,23 @@ namespace DbManager.Controllers
         public ActionResult ConnectedTest(DbConfig dbConfig)
         {
             var connectStr = $"Data Source={DataConversion.Get_Safe_Str(dbConfig.DbServerAddress)};Initial Catalog={DataConversion.Get_Safe_Str(dbConfig.DbName)};User ID={DataConversion.Get_Safe_Str(dbConfig.DbLoginUser)};Password={DataConversion.Get_Safe_Str(dbConfig.DbLoginPwd)}";
-            var result = "连接成功";
+            var result = false;
+            var message = "连接失败";
             SqlConnection conn = new SqlConnection(connectStr);
             try
             {
                 conn.Open();
-                if (conn.State == ConnectionState.Open) { }
+                if (conn.State == ConnectionState.Open) {
+                    result = true;
+                    message = "连接成功";
+                }
             }
             catch (Exception ex)
             {
-                result = ex.Message;
+                message = ex.Message;
             }
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(new { result= result,message= message }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -63,79 +67,24 @@ namespace DbManager.Controllers
         /// <returns></returns>
         public ActionResult SaveCurrentDBSet(DbConfig dbConfig)
         {
-            var result = "保存成功";
+            var result = false;
+            var message = "保存失败";
             try
             {
                 Config.SetValue("DbServerAddress", DataConversion.Get_Safe_Str(dbConfig.DbServerAddress));
                 Config.SetValue("DbName", DataConversion.Get_Safe_Str(dbConfig.DbName));
                 Config.SetValue("DbLoginUser", DataConversion.Get_Safe_Str(dbConfig.DbLoginUser));
                 Config.SetValue("DbLoginPwd", DataConversion.Get_Safe_Str(dbConfig.DbLoginPwd));
+                result = true;
+                message = "保存成功";
             }
             catch (Exception ex)
-            {
-                result = ex.Message;
+            {              
+                message = ex.Message;
             }
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(new { result = result, message = message }, JsonRequestBehavior.AllowGet);
         }
-
         #endregion
-
-
-        #region 查询数据表
-        public ActionResult Query()
-        {
-            if (Config.GetValue("DbName") == "")
-                return Content("请先配置数据库链接！");
-            return View();
-        }
-
-        
-
-        /// <summary>
-        /// 获取当前链接表的下拉列表
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetAllTables()
-        {
-            IList<SysDatabaseTable> _tableList = DataConversion.Convert<SysDatabaseTable>.ToList(MsSql.GetAllTables());
-            return Json(_tableList, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// 获取未完善的表数量
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetImperfectNum()
-        {
-            IList<SysDatabaseTable> _tableList = DataConversion.Convert<SysDatabaseTable>.ToList(MsSql.GetAllTables());
-            return Content(string.Format("当前还有{0}张表未进行完善", _tableList.Count(m => m.TableDesc.Trim() == "-")));
-        }
-
-        /// <summary>
-        /// 获取表结构
-        /// </summary>
-        /// <param name="tablename"></param>
-        /// <returns></returns>
-        public JsonResult GetTableStruct(string tablename)
-        {
-            DataTable dt = MsSql.GetTableStruct(DataConversion.Get_Safe_Str(tablename));
-            IList<TableStruct> structs = DataConversion.Convert<TableStruct>.ToList(dt);
-            return Json(structs, JsonRequestBehavior.AllowGet);
-        }
-
-        #endregion
-
-        public ActionResult SqlTools()
-        {
-            return View();
-        }
-
-        public ActionResult CsTools()
-        {
-            if (Config.GetValue("DbName") == "")
-                return Content("请先配置数据库链接！");
-            return View();
-        }
     }
 }

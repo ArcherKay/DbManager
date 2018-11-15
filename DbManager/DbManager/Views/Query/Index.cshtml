@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "数据字典";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="pad margin no-print">
+    <div class="callout callout-success" style="margin-bottom: 0!important;">
+        <h4><i class="fa fa-info"></i>  欢迎登录数据库查询中心:</h4>
+        仅为提高工作效率而写
+    </div>
+</div>
+<section class="content">
+    <div class="panel-body" style="padding-bottom: 0px; padding: 0px;">
+        <div class="box box-default">
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top: 15px">
+                        <label class="control-label col-sm-1" for="txt_search_table_name">表名称</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="tablename">
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" id="btnQuery" class="btn btn-primary">查询</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-header with-border">
+                <div class="col-md-12">
+                    <button id="btnBulidModel" type="button" class="btn btn-success">
+                        <span class="fa fa-refresh" aria-hidden="true"></span>&nbsp;一键生产cs模型文件
+                    </button>
+                    <button id="btnBulidService" type="button" class="btn btn-success">
+                        <span class="fa fa-refresh" aria-hidden="true"></span>&nbsp;一键生产cs仓储文件
+                    </button>
+                </div>
+            </div>
+            <div class="box-body with-border">
+                <div class="col-md-12">
+                    <table id="datagrid"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myTableStructModal" tabindex="-1" role="dialog" aria-labelledby="myTableStructModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myTableStructModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <table id="tableStructdatagrid"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Content/js/jquery.min.js"></script>
+<script src="~/ViewScripts/query.js"></script>
+
