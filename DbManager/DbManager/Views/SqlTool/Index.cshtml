@@ -13,8 +13,8 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#tables" aria-controls="home" role="tab" data-toggle="tab">创建表脚本</a></li>
-                <li role="presentation"><a href="#fields" aria-controls="messages" role="tab" data-toggle="tab">新增字段脚本</a></li>
+                <li role="presentation" class="active"><a href="#tables" aria-controls="tables" role="tab" data-toggle="tab">创建表脚本</a></li>
+                <li role="presentation"><a href="#fields" aria-controls="fields" role="tab" data-toggle="tab">新增字段脚本</a></li>
             </ul>
 
             <div class="tab-content">
@@ -93,15 +93,15 @@
                             </div>
                         </div>
                         <hr />
-                        <!--自动生成创建表SQL Script start-->
-                        <div class="panel panel-default">
-                            <div class="panel-title">
-                                表结构&nbsp;&nbsp;
-                                <a class="btn btn-warning" id="btnAddColumn1" onclick="AddTr('tb1', -1)"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
-                                <a class="btn btn-danger" id="btnDelColumn1" onclick="delTr2()"><i class="fa  fa-minus-square-o"> 删除字段</i></a>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel-title">
+                                    表结构&nbsp;&nbsp;
+                                    <a class="btn btn-warning" id="btnAddColumn1" onclick="AddTr('tb1', -1)"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
+                                    <a class="btn btn-danger" id="btnDelColumn1" onclick="delTr2()"><i class="fa  fa-minus-square-o"> 删除字段</i></a>
+                                </div>
                             </div>
-
-                            <div class="panel-body">
+                            <div class="col-md-12">
                                 <table id="tb1" class="table">
                                     <thead>
                                         <tr>
@@ -114,7 +114,6 @@
                                 </table>
                             </div>
                         </div>
-                        <!--自动生成创建表SQL Script end-->
                     </div>
                 </div>
             </div>

@@ -9,10 +9,10 @@
 
 function AddTr2(tab, row, trHtml) {
     var $tr = $("#" + tab + " tr").eq(row);
-    if ($tr.size() == 0) {
-        alert("指定的table id或行数不存在！");
-        return;
-    }
+    //if ($tr.size() == 0) {
+    //    alert("指定的table id或行数不存在！");
+    //    return;
+    //}
     $tr.after(trHtml);
 }
 //changes
