@@ -22,10 +22,10 @@
                     <br />
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" onclick="Build()" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">
+                            <button type="button" onclick="Build()" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal1">
                                 一键生成脚本
                             </button>
-                            <button type="button" onclick="SqlView()" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">
+                            <button type="button" onclick="SqlView()" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal1">
                                 创建表示例模板
                             </button>
                             &nbsp; &nbsp; &nbsp;<i class="fa fa-warning text-yellow"></i>&nbsp;温馨提示：固定字段： Id / AddTime / ModifyTime 自动生成无需重复创建
@@ -49,8 +49,8 @@
                         <div class="col-md-12">
                             <div class="panel-title">
                                 表结构&nbsp;&nbsp;
-                                <a class="btn" id="btnAddColumn" onclick="AddTr('tb', -1)"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
-                                <a class="btn" id="btnDelColumn" onclick="delTr2()"><i class="fa fa-minus-square-o"> 删除字段</i></a>
+                                <a class="btn btn-warning" id="btnAddColumn" onclick="AddTr('tb', -1)"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
+                                <a class="btn btn-danger" id="btnDelColumn" onclick="delTr2()"><i class="fa fa-minus-square-o"> 删除字段</i></a>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -69,20 +69,21 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="fields">
-                    <div>
-                        <button type="button" onclick="Build2() " class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">
-                            一键生成脚本
-                        </button>
-                        <button type="button" onclick="SqlView2()" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">
-                            新增表字段示例模板
-                        </button>
-
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" onclick="Build2() " class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal1">
+                                一键生成脚本
+                            </button>
+                            <button type="button" onclick="SqlView2()" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal1">
+                                新增表字段示例模板
+                            </button>
+                        </div>
                     </div>
                     <hr />
                     <div>
-                        <div class="form-group">
-
-                            <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-table"></i>
@@ -91,12 +92,13 @@
                                 </div>
                             </div>
                         </div>
+                        <hr />
                         <!--自动生成创建表SQL Script start-->
                         <div class="panel panel-default">
                             <div class="panel-title">
                                 表结构&nbsp;&nbsp;
-                                <a class="btn" id="btnAddColumn1" onclick="AddTr('tb1', -1)"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
-                                <a class="btn" id="btnDelColumn1" onclick="delTr2()"><i class="fa  fa-minus-square-o"> 删除字段</i></a>
+                                <a class="btn btn-warning" id="btnAddColumn1" onclick="AddTr('tb1', -1)"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
+                                <a class="btn btn-danger" id="btnDelColumn1" onclick="delTr2()"><i class="fa  fa-minus-square-o"> 删除字段</i></a>
                             </div>
 
                             <div class="panel-body">

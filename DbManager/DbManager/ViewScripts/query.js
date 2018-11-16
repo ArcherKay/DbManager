@@ -20,8 +20,8 @@ var init = function (params) {
 }
 //格式化操作列
 var operateFormatter=function (value, row) {
-    var html = '<a class="btn btn-default btn-xs" onclick=tableStruct(\'' + row.TableName + '\')><i class="fa fa-search"></i>&nbsp;查看表结构</a>&nbsp;';
-    html += '<a class="btn btn-primary btn-xs" onclick=build(\'' + row.TableName + '\')><i class="fa fa-gears"></i>&nbsp;生成cs模型</a>';
+    var html = '<a class="btn btn-info btn-xs" onclick=tableStruct(\'' + row.TableName + '\')><i class="fa fa-search"></i>&nbsp;查看表结构</a>&nbsp;';
+    html += '<a class="btn bg-purple btn-xs" onclick=build(\'' + row.TableName + '\')><i class="fa fa-gears"></i>&nbsp;生成cs模型</a>';
     return html;
 }
 
