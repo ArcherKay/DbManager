@@ -13,10 +13,10 @@ db.alert = function (msg, icon, time, fn) {
     return layer.msg(msg, { icon: icon, time: time, shade: 0.8 });
 }
 db.success = function (msg) {
-    db.alert(msg, 1, 800);
+    db.alert(msg, 1, 1000);
 }
 db.error = function (msg) {
-    db.alert(msg, 2, 800);
+    db.alert(msg, 2, 1000);
 }
 db.confirm = function (msg, fn) {
     layer.confirm(msg, { icon: 3, title: '提示' }, function (index) {

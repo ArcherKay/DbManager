@@ -20,7 +20,7 @@ var init = function (params) {
 }
 //格式化操作列
 var operateFormatter=function (value, row) {
-    var html = '<a class="btn btn-info btn-xs" onclick=tableStruct(\'' + row.TableName + '\')><i class="fa fa-search"></i>&nbsp;查看表结构</a>&nbsp;';
+    var html = '<a class="btn btn-primary btn-xs" onclick=tableStruct(\'' + row.TableName + '\')><i class="fa fa-search"></i>&nbsp;查看表结构</a>&nbsp;';
     html += '<a class="btn bg-purple btn-xs" onclick=build(\'' + row.TableName + '\')><i class="fa fa-gears"></i>&nbsp;生成cs模型</a>';
     return html;
 }
@@ -72,7 +72,7 @@ var tableStruct = function (tableName) {
         { field: 'FieldDesc', title: '字段描述', align: 'center', width: 100, valign: 'middle' }
 
     ];
-    db.load(url, "tableStructdatagrid", columns,10);
+    db.load(url, "tableStructdatagrid", columns);
 }
 var checkFormatter = function (value, row) {
     html = '<input type="checkbox" />'

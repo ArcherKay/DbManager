@@ -22,10 +22,10 @@
                     <br />
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" onclick="Build()" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal1">
+                            <button type="button" onclick="Build()" class="btn btn-success btn-sm">
                                 一键生成脚本
                             </button>
-                            <button type="button" onclick="SqlView()" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal1">
+                            <button type="button" onclick="SqlView()" class="btn btn-info btn-sm">
                                 创建表示例模板
                             </button>
                             &nbsp; &nbsp; &nbsp;<i class="fa fa-warning text-yellow"></i>&nbsp;温馨提示：固定字段： Id / AddTime / ModifyTime 自动生成无需重复创建
@@ -38,9 +38,9 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-table"></i>
                                 </div>
-                                <input type="text" class="form-control" id="inpTableName" style="width: 200px;" placeholder="创建的表名">
-                                <input type="text" class="form-control" id="inpTableDesc" style="width: 220px;" placeholder="表的描述">
-                                <input type="text" class="form-control" id="inpIndexName" style="width: 220px;" placeholder="索引名">
+                                <input type="text" class="form-control" id="txtTableName" style="width: 200px;" placeholder="创建的表名">
+                                <input type="text" class="form-control" id="txtTableDesc" style="width: 220px;" placeholder="表的描述">
+                                <input type="text" class="form-control" id="txtTableIndex" style="width: 220px;" placeholder="索引名">
                             </div>
                         </div>
                     </div>
@@ -49,20 +49,24 @@
                         <div class="col-md-12">
                             <div class="panel-title">
                                 表结构&nbsp;&nbsp;
-                                <a class="btn btn-warning" id="btnAddColumn" onclick="AddTr('tb', -1)"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
-                                <a class="btn btn-danger" id="btnDelColumn" onclick="delTr2()"><i class="fa fa-minus-square-o"> 删除字段</i></a>
+                                <a class="btn btn-primary" id="btnAddColumn" onclick="AddTr('tb', -1)"><i class="fa  fa-plus-square-o"> 新增字段</i></a>
+                                <a class="btn btn-danger" id="btnDelColumn" onclick="delTr()"><i class="fa fa-minus-square-o"> 删除字段</i></a>
                             </div>
                         </div>
+                    </div>
+                    <br />
+                    <div class="row">
                         <div class="col-md-12">
-                            <table id="tb" class="table">
+                            <table id="tb" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th style="width: 10px">#</th>
                                         <th>字段名</th>
                                         <th>数据类型</th>
                                         <th>字段描述</th>
                                     </tr>
                                 </thead>
+                                <tbody></tbody>
                             </table>
                         </div>
                     </div>
@@ -72,10 +76,10 @@
                     <br />
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" onclick="Build2() " class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal1">
+                            <button type="button" onclick="Build2() " class="btn btn-success btn-sm">
                                 一键生成脚本
                             </button>
-                            <button type="button" onclick="SqlView2()" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal1">
+                            <button type="button" onclick="SqlView2()" class="btn btn-info btn-sm">
                                 新增表字段示例模板
                             </button>
                         </div>
@@ -88,7 +92,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-table"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="inpAlterTableName" style="width: 200px;" placeholder="要修改的表名称">
+                                    <input type="text" class="form-control" id="alterTableName" style="width: 200px;" placeholder="要修改的表名称">
                                 </div>
                             </div>
                         </div>
@@ -97,20 +101,24 @@
                             <div class="col-md-12">
                                 <div class="panel-title">
                                     表结构&nbsp;&nbsp;
-                                    <a class="btn btn-warning" id="btnAddColumn1" onclick="AddTr('tb1', -1)"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
-                                    <a class="btn btn-danger" id="btnDelColumn1" onclick="delTr2()"><i class="fa  fa-minus-square-o"> 删除字段</i></a>
+                                    <a class="btn btn-warning" id="btnAddColumn1" onclick="AddTr('tb1')"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
+                                    <a class="btn btn-danger" id="btnDelColumn1" onclick="delTr()"><i class="fa  fa-minus-square-o"> 删除字段</i></a>
                                 </div>
                             </div>
+                        </div>
+                        <br />
+                        <div class="row">
                             <div class="col-md-12">
-                                <table id="tb1" class="table">
+                                <table id="tb1" class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th style="width: 10px">#</th>
                                             <th>字段名</th>
                                             <th>数据类型</th>
                                             <th>字段描述</th>
                                         </tr>
                                     </thead>
+                                    <tbody></tbody>
                                 </table>
                             </div>
                         </div>
@@ -120,40 +128,6 @@
         </div>
     </div>
 </section>
-<div class="modal fade bs-example-modal-lg" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel1"><i class="fa fa-code"></i>&nbsp;<span id="spWinTitle">SQL脚本预览窗口</span> </h4>
-            </div>
-            <div class="modal-body">
-                <span id="spCreateSql">
-                </span>
-            </div>
-            <div class="modal-footer">
-
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">创建表脚本</h4>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">放弃生成</button>
-                <button type="button" class="btn btn-primary">一键生成</button>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="~/Content/js/jquery.min.js"></script>
 <script src="~/ViewScripts/sqltools.js"></script>
 
