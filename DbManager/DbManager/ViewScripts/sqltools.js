@@ -52,26 +52,14 @@ function Build() {
         dataType: "json",
         type: "POST",
         success: function (res) {
-            layer.open({
-                type: 1,
-                title: 'SQL脚本预览窗口',
-                //skin: 'layui-layer-rim', //加上边框
-                area: ['90%', '100%'], //宽高
-                content: res
-            });
+            db.open('SQL脚本预览窗口',1, ['90%', '100%'], res);
         }
     });
 }
 
 function SqlView() {
     $.getJSON("/SqlTool/SqlTemplate", "", function (res) {
-        layer.open({
-            type: 1,
-            title:'新建表SQL脚本示例',
-            skin: 'layui-layer-rim', //加上边框
-            area: ['90%', '100%'], //宽高
-            content: res
-        });
+        db.open('创建表示例',1, ['90%', '100%'], res);
     });
 }
 
@@ -101,25 +89,13 @@ function Build2() {
         dataType: "json",
         type: "POST",
         success: function (res) {
-            layer.open({
-                type: 1,
-                title: 'SQL脚本预览窗口',
-                skin: 'layui-layer-rim',
-                area: ['90%', '50%'],
-                content: res
-            });
+            db.open('SQL脚本预览窗口',1, ['90%', '50%'], res);
         }
     });
 }
 
 function SqlView2() {
     $.getJSON("/SqlTool/FieldSqlTemplate", "", function (res) {
-        layer.open({
-            type: 1,
-            title: '增加字段示例',
-            skin: 'layui-layer-rim',
-            area: ['90%', '50%'],
-            content: res
-        });
+        db.open('增加字段示例',1,['90%', '50%'], res);
     });
 }

@@ -1,8 +1,10 @@
 ﻿$(function () {
     init();
     query();
-    batchBuildModel();
-    batchBuildService();
+    bulidbatchModel();
+    bulidAllModel();
+    //bulidAllService();
+    //SetConfig();
 });
 
 var init = function (params) {
@@ -21,10 +23,9 @@ var init = function (params) {
 //格式化操作列
 var operateFormatter=function (value, row) {
     var html = '<a class="btn btn-primary btn-xs" onclick=tableStruct(\'' + row.TableName + '\')><i class="fa fa-search"></i>&nbsp;查看表结构</a>&nbsp;';
-    html += '<a class="btn bg-purple btn-xs" onclick=build(\'' + row.TableName + '\')><i class="fa fa-gears"></i>&nbsp;生成cs模型</a>';
+    html += '<a class="btn bg-purple btn-xs" onclick=buildModel(\'' + row.TableName + '\')><i class="fa fa-gears"></i>&nbsp;生成cs模型</a>';
     return html;
 }
-
 var query = function () {
     $('#btnQuery').click(function () {
         var tableName = $('#tablename').val();
@@ -32,50 +33,56 @@ var query = function () {
         init(params);
     });
 }
-var batchBuildModel = function () {
-    $('#btnBulidModel').click(function () {
+
+var tableStruct = function (tableName) {
+    db.open("表名："+tableName,2,['90%', '100%'], '/Query/Detail?tableName=' + tableName);
+}
+
+/**
+ * 代码生成
+**/
+var buildModel = function (tableName) {
+    db.startLoding();
+    $.getJSON("/Query/buildModel", { tableName: tableName }, function (d) {
+        db.closeLoding();
+        if (d.result) {
+            db.success(d.message);
+            return false;
+        }
+        db.error(d.message);
+    });
+}
+
+
+var bulidbatchModel = function () {
+    $('#btnBatchModel').click(function () {
         var ids = db.getSelectKey('datagrid', 'TableName');
         if (ids === '') {
             db.error('请选择要生成文件的数据表');
             return false;
         }
-        alert(ids);
+        db.startLoding();
+        $.getJSON("/Query/buildBatchModels", { tables: ids }, function (d) {
+            db.closeLoding();
+            if (d.result) {
+                db.success(d.message);
+                return false;
+            }
+            db.error(d.message);
+        });
     });
 }
-var batchBuildService=function () {
-    $('#btnBulidService').click(function () {
-        var ids = db.getSelectKey('datagrid','TableName');
-        if (ids === '') {
-            db.error('请选择要生成文件的数据表');
-            return false;
-        }
-        alert(ids);
+
+var bulidAllModel = function () {
+    $('#btnAllModel').click(function () {
+        db.startLoding();
+        $.getJSON("/Query/buildAllModels", "", function (d) {
+            db.closeLoding();
+            if (d.result) {
+                db.success(d.message);
+                return false;
+            }
+            db.error(d.message);
+        });
     });
-}
-var bulid = function (tableName) {
-}
-
-var tableStruct = function (tableName) {
-    $("#myTableStructModalLabel").text("表名：" + tableName);
-    $('#myTableStructModal').modal();
-    var url = '/Query/GetTableStruct?tableName=' + tableName;
-    var columns = [
-        { field: 'FieldName', title: '字段名', width: 100, align: 'center', valign: 'center'},
-        { field: 'FieldType', title: '字段类型', width: 100, align: 'center', valign: 'center' },
-        { field: 'IsNull', title: '可否为空', align: 'center', width: 50, valign: 'middle', formatter: checkFormatter  },
-        { field: 'IsPK', title: '是否主键', align: 'center', width: 50, valign: 'middle', formatter: checkFormatter  },
-        { field: 'IsSelfGrowth', title: '自动增长', align: 'center', width: 50, valign: 'middle', formatter: checkFormatter },
-        { field: 'BytesOccupied', title: '占用字节', align: 'center', width: 50, valign: 'middle' },
-        { field: 'FieldLength', title: '长度', align: 'center', width: 50, valign: 'middle' },
-        { field: 'FieldBit', title: '小数位数', align: 'center', width: 50, valign: 'middle' },
-        { field: 'FieldDefault', title: '默认值', align: 'center', width: 50, valign: 'middle' },
-        { field: 'FieldDesc', title: '字段描述', align: 'center', width: 100, valign: 'middle' }
-
-    ];
-    db.load(url, "tableStructdatagrid", columns);
-}
-var checkFormatter = function (value, row) {
-    html = '<input type="checkbox" />'
-    if (value == "True") html = '<input type="checkbox" checked=checked />'
-    return html;
 }

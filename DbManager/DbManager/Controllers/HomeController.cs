@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using DbManager.Common;
-using System.Data.SqlClient;
 using System.Data;
-
+using System.Data.SqlClient;
+using System.Web.Mvc;
 namespace DbManager.Controllers
 {
     public class HomeController : Controller
     {
-        #region 数据库连接配置
+       
         public ActionResult Index()
         {
             return View();
         }
+
+
+        #region 数据库连接配置
 
         /// <summary>
         /// 获取当前配置数据库
@@ -23,24 +21,21 @@ namespace DbManager.Controllers
         /// <returns></returns>
         public ActionResult GetCurrenDb()
         {
-            var dbConfig = new DbConfig()
-            {
-                DbServerAddress = Config.GetValue("DbServerAddress"),
-                DbName = Config.GetValue("DbName"),
-                DbLoginUser = Config.GetValue("DbLoginUser"),
-                DbLoginPwd = Config.GetValue("DbLoginPwd")
-            };
-            return Json(dbConfig, JsonRequestBehavior.AllowGet);
+            return Json(new { DbServerAddress= ConfigHelper.GetValue("DbServerAddress"), DbName= ConfigHelper.GetValue("DbName"),
+                DbLoginUser = ConfigHelper.GetValue("DbLoginUser"), DbLoginPwd = ConfigHelper.GetValue("DbLoginPwd") }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
         /// 测试连接
         /// </summary>
-        /// <param name="dbConfig"></param>
+        /// <param name="DbServerAddress"></param>
+        /// <param name="DbName"></param>
+        /// <param name="DbLoginUser"></param>
+        /// <param name="DbLoginPwd"></param>
         /// <returns></returns>
-        public ActionResult ConnectedTest(DbConfig dbConfig)
+        public ActionResult ConnectedTest(string DbServerAddress,string DbName,string DbLoginUser,string DbLoginPwd)
         {
-            var connectStr = $"Data Source={DataConversion.Get_Safe_Str(dbConfig.DbServerAddress)};Initial Catalog={DataConversion.Get_Safe_Str(dbConfig.DbName)};User ID={DataConversion.Get_Safe_Str(dbConfig.DbLoginUser)};Password={DataConversion.Get_Safe_Str(dbConfig.DbLoginPwd)}";
+            var connectStr = $"Data Source={DbServerAddress};Initial Catalog={DbName};User ID={DbLoginUser};Password={DbLoginPwd}";
             var result = false;
             var message = "连接失败";
             SqlConnection conn = new SqlConnection(connectStr);
@@ -63,18 +58,21 @@ namespace DbManager.Controllers
         /// <summary>
         /// 保存配置
         /// </summary>
-        /// <param name="dbConfig"></param>
+        /// <param name="DbServerAddress"></param>
+        /// <param name="DbName"></param>
+        /// <param name="DbLoginUser"></param>
+        /// <param name="DbLoginPwd"></param>
         /// <returns></returns>
-        public ActionResult SaveCurrentDBSet(DbConfig dbConfig)
+        public ActionResult SaveCurrentDBSet(string DbServerAddress, string DbName, string DbLoginUser, string DbLoginPwd)
         {
             var result = false;
             var message = "保存失败";
             try
             {
-                Config.SetValue("DbServerAddress", DataConversion.Get_Safe_Str(dbConfig.DbServerAddress));
-                Config.SetValue("DbName", DataConversion.Get_Safe_Str(dbConfig.DbName));
-                Config.SetValue("DbLoginUser", DataConversion.Get_Safe_Str(dbConfig.DbLoginUser));
-                Config.SetValue("DbLoginPwd", DataConversion.Get_Safe_Str(dbConfig.DbLoginPwd));
+                ConfigHelper.SetValue("DbServerAddress", DbServerAddress);
+                ConfigHelper.SetValue("DbName",DbName);
+                ConfigHelper.SetValue("DbLoginUser",DbLoginUser);
+                ConfigHelper.SetValue("DbLoginPwd", DbLoginPwd);
                 result = true;
                 message = "保存成功";
             }

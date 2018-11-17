@@ -1,16 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
+﻿using System.Configuration;
 using System.Web;
-
 namespace DbManager
 {
     /// <summary>
     /// WebConfig 配置文件获取修改
     /// </summary>
-    public class Config
+    public class ConfigHelper
     {
         /// <summary>
         /// 根据Key取Value值

@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -145,14 +148,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Common\Config.cs" />
-    <Compile Include="Common\DataConversion.cs" />
-    <Compile Include="Common\DbConfig.cs" />
-    <Compile Include="Common\MsSql.cs" />
-    <Compile Include="Common\SysDatabaseTable.cs" />
-    <Compile Include="Common\TableStruct.cs" />
-    <Compile Include="Common\WebUtils.cs" />
-    <Compile Include="Controllers\CsToolController.cs" />
+    <Compile Include="Common\ConfigHelper.cs" />
+    <Compile Include="Common\TableHelper.cs" />
+    <Compile Include="Models\DatabaseTable.cs" />
+    <Compile Include="Models\TableDetail.cs" />
+    <Compile Include="Models\TableStruct.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueryController.cs" />
     <Compile Include="Controllers\SqlToolController.cs" />
@@ -301,6 +301,7 @@
     <Content Include="Content\js\layer\theme\default\loading-0.gif" />
     <Content Include="Content\js\layer\theme\default\loading-1.gif" />
     <Content Include="Content\js\layer\theme\default\loading-2.gif" />
+    <Content Include="ViewScripts\detail.js" />
     <Content Include="ViewScripts\index.js" />
     <Content Include="ViewScripts\query.js" />
     <Content Include="ViewScripts\sqltools.js" />
@@ -334,10 +335,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
-    <Content Include="Views\CsTool\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Query\Index.cshtml" />
     <Content Include="Views\SqlTool\Index.cshtml" />
+    <Content Include="Views\Query\Detail.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

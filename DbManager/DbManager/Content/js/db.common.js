@@ -10,7 +10,7 @@ db.alert = function (msg, icon, time, fn) {
     if (fn != undefined) {
         setTimeout(fn, time);
     }
-    return layer.msg(msg, { icon: icon, time: time, shade: 0.8 });
+    return layer.msg(msg, { icon: icon, time: time, shade: 0.8, offset: '100px'});
 }
 db.success = function (msg) {
     db.alert(msg, 1, 1000);
@@ -19,7 +19,7 @@ db.error = function (msg) {
     db.alert(msg, 2, 1000);
 }
 db.confirm = function (msg, fn) {
-    layer.confirm(msg, { icon: 3, title: '提示' }, function (index) {
+    layer.confirm(msg, { icon: 3, title: '提示', offset: '100px' }, function (index) {
         fn();
         layer.close(index);
     });
@@ -28,14 +28,24 @@ db.confirm = function (msg, fn) {
 
 //遮罩层
 db.startLoding = function () {
-    layer.load(0, { shade: 0.8 }); //0代表加载的风格，支持0-2
+    layer.load(0, { shade: 0.8, offset:'100px' }); //0代表加载的风格，支持0-2
 }
 
 db.closeLoding = function () {
     layer.closeAll('loading'); //0代表加载的风格，支持0-2
 }
 
-
+//打开窗口
+db.open = function (title,type,area,content) {
+    layer.open({
+        type: type, //1 内容弹窗  2页面弹窗
+        title: title,
+        offset: 't',//坐标置顶
+        area: area,
+        maxmin: false,
+        content: content
+    });
+}
 
 
 /*数据表格加载

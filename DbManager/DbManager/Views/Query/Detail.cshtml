@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数据表查询</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/admintle.min.css">
+    <link rel="stylesheet" href="~/Content/css/skins.min.css">
+    <link rel="stylesheet" href="~/Content/js/icheck/all.css">
+    <link rel="stylesheet" href="~/Content/js/bootstrap-table/bootstrap-table.min.css">
+</head>
+<body class="hold-transition skin-purple sidebar-mini fixed">
+    <section class="invoice">
+        <div class="panel-body" style="padding-bottom: 0px; padding: 0px;">
+            <input type="hidden" id="tableName" value="@ViewData["tableName"]" />
+            <div class="col-md-12">
+                <table id="datagrid"></table>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/adminlte.min.js"></script>
+    <script src="~/Content/js/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/js/fastclick.js"></script>
+    <script src="~/Content/js/layer/layer.js"></script>
+    <script src="~/Content/js/icheck/icheck.min.js"></script>
+    <script src="~/Content/js/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="~/Content/js/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+    <script src="~/Content/js/db.common.js"></script>
+    <script src="~/ViewScripts/detail.js"></script>
+</body>
+</html>
+

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace DbManager.Common
+﻿namespace DbManager.Models
 {
     /// <summary>
     /// 表结构

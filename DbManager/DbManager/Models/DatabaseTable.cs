@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace DbManager.Common
+﻿namespace DbManager.Models
 {
     /// <summary>
     /// 数据库表
     /// </summary>
-    public class SysDatabaseTable
-    {
+    public class DatabaseTable
+    { 
         /// <summary>
         /// 表名称
         /// </summary>

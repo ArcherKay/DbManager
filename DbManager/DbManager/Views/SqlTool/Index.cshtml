@@ -7,6 +7,7 @@
 <div class="pad margin no-print">
     <div class="callout callout-warning" style="margin-bottom: 0!important;">
         <h4><i class="fa fa-hacker-news"></i> &nbsp;脚本生成工具箱</h4>
+        <i class="fa fa-warning"></i>&nbsp;温馨提示：固定字段： Id / AddTime / ModifyTime 自动生成无需重复创建,字段类型输入正常的格式（例：int/tinyint/varchar(50)/datetime）
     </div>
 </div>
 <section class="invoice">
@@ -22,13 +23,8 @@
                     <br />
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" onclick="Build()" class="btn btn-success btn-sm">
-                                一键生成脚本
-                            </button>
-                            <button type="button" onclick="SqlView()" class="btn btn-info btn-sm">
-                                创建表示例模板
-                            </button>
-                            &nbsp; &nbsp; &nbsp;<i class="fa fa-warning text-yellow"></i>&nbsp;温馨提示：固定字段： Id / AddTime / ModifyTime 自动生成无需重复创建
+                            <button type="button" onclick="Build()" class="btn btn-success btn-sm">一键生成脚本</button>
+                            <button type="button" onclick="SqlView()" class="btn btn-primary btn-sm">创建表示例模板</button>
                         </div>
                     </div>
                     <hr />
@@ -50,7 +46,7 @@
                             <div class="panel-title">
                                 表结构&nbsp;&nbsp;
                                 <a class="btn btn-primary" id="btnAddColumn" onclick="AddTr('tb', -1)"><i class="fa  fa-plus-square-o"> 新增字段</i></a>
-                                <a class="btn btn-danger" id="btnDelColumn" onclick="delTr()"><i class="fa fa-minus-square-o"> 删除字段</i></a>
+                                <a class="btn btn-primary" id="btnDelColumn" onclick="delTr()"><i class="fa fa-minus-square-o"> 删除字段</i></a>
                             </div>
                         </div>
                     </div>
@@ -61,9 +57,9 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th>字段名</th>
-                                        <th>数据类型</th>
-                                        <th>字段描述</th>
+                                        <th>字段名&nbsp;<span class="text-red">&nbsp;*</span></th>
+                                        <th>数据类型&nbsp;<span class="text-red">&nbsp;*</span></th>
+                                        <th>字段描述&nbsp;<span class="text-red">&nbsp;*</span></th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -76,12 +72,8 @@
                     <br />
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" onclick="Build2() " class="btn btn-success btn-sm">
-                                一键生成脚本
-                            </button>
-                            <button type="button" onclick="SqlView2()" class="btn btn-info btn-sm">
-                                新增表字段示例模板
-                            </button>
+                            <button type="button" onclick="Build2() " class="btn btn-success btn-sm">一键生成脚本</button>
+                            <button type="button" onclick="SqlView2()" class="btn btn-primary btn-sm">新增表字段示例模板</button>
                         </div>
                     </div>
                     <hr />
@@ -101,8 +93,8 @@
                             <div class="col-md-12">
                                 <div class="panel-title">
                                     表结构&nbsp;&nbsp;
-                                    <a class="btn btn-warning" id="btnAddColumn1" onclick="AddTr('tb1')"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
-                                    <a class="btn btn-danger" id="btnDelColumn1" onclick="delTr()"><i class="fa  fa-minus-square-o"> 删除字段</i></a>
+                                    <a class="btn btn-primary" id="btnAddColumn1" onclick="AddTr('tb1')"><i class="fa  fa-plus-square-o"> 字段新增</i></a>
+                                    <a class="btn btn-primary" id="btnDelColumn1" onclick="delTr()"><i class="fa  fa-minus-square-o"> 删除字段</i></a>
                                 </div>
                             </div>
                         </div>
@@ -113,9 +105,9 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                            <th>字段名</th>
-                                            <th>数据类型</th>
-                                            <th>字段描述</th>
+                                            <th>字段名&nbsp;<span class="text-red">&nbsp;*</span></th>
+                                            <th>数据类型&nbsp;<span class="text-red">&nbsp;*</span></th>
+                                            <th>字段描述&nbsp;<span class="text-red">&nbsp;*</span></th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>

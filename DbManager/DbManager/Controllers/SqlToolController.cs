@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DbManager.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
-
 namespace DbManager.Controllers
 {
     public class SqlToolController : Controller
@@ -15,12 +12,6 @@ namespace DbManager.Controllers
             return View();
         }
 
-        public class Table
-        {
-            public string FieldName { get; set; }
-            public string FieldType { get; set; }
-            public string FieldDesc { get; set; }
-        }
         string keyFilter = "int|decimal|tinyint|money|long|bigint|byte|short|char|decimal(19,5)|decimal(18,2)";
         /// <summary>
         /// 创建sql脚本
@@ -30,7 +21,7 @@ namespace DbManager.Controllers
         /// <param name="tableIndex"></param>
         /// <param name="tableList"></param>
         /// <returns></returns>
-        public ActionResult CreateSql(string tableName, string tableDesc, string tableIndex, List<Table> tableList)
+        public ActionResult CreateSql(string tableName, string tableDesc, string tableIndex, List<TableDetail> tableList)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -76,6 +67,8 @@ namespace DbManager.Controllers
             {
                 sb.Append($"EXECUTE sp_addextendedproperty N'MS_Description', '{item.FieldDesc}', N'user', N'dbo', N'table', N'{tableName}', N'column', N'{item.FieldName}' <br/>");
             }
+            sb.Append($"EXECUTE sp_addextendedproperty N'MS_Description', '添加时间', N'user', N'dbo', N'table', N'{tableName}', N'column', N'AddTime' <br/>");
+            sb.Append($"EXECUTE sp_addextendedproperty N'MS_Description', '修改时间', N'user', N'dbo', N'table', N'{tableName}', N'column', N'ModifyTime' <br/>");
             //添加索引
             if (!string.IsNullOrEmpty(tableIndex))
             {
@@ -150,7 +143,7 @@ namespace DbManager.Controllers
         /// <param name="tableName"></param>
         /// <param name="tableList"></param>
         /// <returns></returns>
-        public ActionResult CreateFieldSql(string tableName, List<Table> tableList)
+        public ActionResult CreateFieldSql(string tableName, List<TableDetail> tableList)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("<pre><code class=\"language-sql\">");
