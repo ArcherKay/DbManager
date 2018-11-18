@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\ConfigHelper.cs" />
     <Compile Include="Common\TableHelper.cs" />
+    <Compile Include="Controllers\CsToolController.cs" />
     <Compile Include="Models\DatabaseTable.cs" />
     <Compile Include="Models\TableDetail.cs" />
     <Compile Include="Models\TableStruct.cs" />
@@ -301,8 +302,10 @@
     <Content Include="Content\js\layer\theme\default\loading-0.gif" />
     <Content Include="Content\js\layer\theme\default\loading-1.gif" />
     <Content Include="Content\js\layer\theme\default\loading-2.gif" />
+    <Content Include="ViewScripts\cstool.js" />
     <Content Include="ViewScripts\detail.js" />
     <Content Include="ViewScripts\index.js" />
+    <Content Include="ViewScripts\config.js" />
     <Content Include="ViewScripts\query.js" />
     <Content Include="ViewScripts\sqltools.js" />
     <Content Include="favicon.ico" />
@@ -339,6 +342,9 @@
     <Content Include="Views\Query\Index.cshtml" />
     <Content Include="Views\SqlTool\Index.cshtml" />
     <Content Include="Views\Query\Detail.cshtml" />
+    <Content Include="Views\CsTool\Index.cshtml" />
+    <Content Include="Views\CsTool\NameSpaceConfig.cshtml" />
+    <Content Include="Views\Shared\_ChildLayout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

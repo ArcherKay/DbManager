@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "cs代码生成工具箱";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="pad margin no-print">
+    <div class="callout bg-purple" style="margin-bottom: 0!important;">
+        <h4><i class="fa fa-code"></i>cs代码生成工具箱:</h4>
+        仅为提高工作效率而写
+    </div>
+</div>
+<section class="invoice">
+    <div class="panel-body" style="padding-bottom: 0px; padding: 0px;">
+        <div class="row">
+            <div class="form-group">
+                <input type="hidden" id="message" value="@ViewData["message"]" />
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="tablename" placeholder="请输入表名" />
+                </div>
+                <div class="col-sm-3">
+                    <button type="button" id="btnQuery" class="btn btn-primary">查询</button>&nbsp;&nbsp;
+                    <button id="btnSetConfig" type="button" class="btn bg-navy">
+                        <span class="fa fa-gears"></span>&nbsp;配置命名空间
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <button onclick="bulidbatchModel('1')" type="button" class="btn bg-purple">
+                    <span class="fa fa-gears"></span>&nbsp;生成勾选项EF模型
+                </button>
+                <button onclick="bulidbatchModel('2')" type="button" class="btn bg-purple">
+                    <span class="fa fa-gears"></span>&nbsp;生成勾选项Dapper模型
+                </button>
+                <button onclick="bulidAllModel('1')" type="button" class="btn bg-purple">
+                    <span class="fa fa-gears"></span>&nbsp;生成EF模型（ALL）
+                </button>
+                <button onclick="bulidAllModel('2')" type="button" class="btn bg-purple">
+                    <span class="fa fa-gears"></span>&nbsp;生成Dapper模型（ALL）
+                </button>
+                <button onclick="bulidService()" type="button" class="btn bg-purple">
+                    <span class="fa fa-gears"></span>&nbsp;生成三层结构（通用）
+                </button>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <table id="datagrid"></table>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Content/js/jquery.min.js"></script>
+<script src="~/ViewScripts/cstool.js"></script>
+

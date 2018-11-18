@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "命名空间配置";
+    Layout = "~/Views/Shared/_ChildLayout.cshtml";
+}
+
+<section class="invoice">
+    <div class="row">
+        <form class="form-horizontal pull-left">
+            <div class="form-group">
+                <label for="modelName" class="col-sm-4 control-label form-label">Model层命名空间</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-server"></i></div>
+                        <input type="text" class="form-control" id="modelName" value="@ViewData["ModelNameSpace"]" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dalName" class="col-sm-4 control-label form-label">DAL层命名空间</label>
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-server"></i></div>
+                        <input type="text" class="form-control" id="dalName" value="@ViewData["DALNameSpace"]" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="bllName" class="col-sm-4 control-label form-label">BLL层命名空间</label>
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-server"></i></div>
+                        <input type="text" class="form-control" id="bllName" value="@ViewData["BLLNameSpace"]" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button type="button" id="btnSave" class="btn btn-success pull-right">
+                        <i class="fa fa-save"></i> 保存配置
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="~/Content/js/jquery.min.js"></script>
+<script src="~/ViewScripts/config.js"></script>
