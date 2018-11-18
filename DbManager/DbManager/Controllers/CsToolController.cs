@@ -155,6 +155,8 @@ namespace DbManager.Controllers
             var tableList = TableHelper.GetAllTables();
             try
             {
+                WriteEFCoreContext(tableList);
+                WriteEFContext(tableList);
                 foreach (var t in tableList)
                 {
                     WriteSw(t.TableName, t.TableDesc, type);
@@ -165,6 +167,76 @@ namespace DbManager.Controllers
                 message = ex.Message;
             }
             return Json(new { result = result, message = message }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 写入EFnetcore上下文
+        /// </summary>
+        /// <param name="tableList"></param>
+        private void WriteEFCoreContext(List<DatabaseTable> tableList)
+        {
+            if (System.IO.File.Exists(@"d:\DbCenter\Service\CoreDbContext.cs")) { System.IO.File.Delete(@"d:\DbCenter\Service\CoreDbContext.cs"); }
+            FileStream fs = new FileStream("d:\\DbCenter\\Service\\CoreDbContext.cs", FileMode.OpenOrCreate);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("//------------------------------------------------------------------------------ \t");
+            sw.WriteLine("//    描述：NetCore EF上下文 \t");
+            sw.WriteLine("//    作者：杨隆健 \t");
+            sw.WriteLine("//------------------------------------------------------------------------------ \t");
+            sw.WriteLine("using System; \t");
+            sw.WriteLine("using Microsoft.EntityFrameworkCore; \t");
+            sw.WriteLine("using Microsoft.EntityFrameworkCore.Metadata; \t");
+            sw.WriteLine($"namespace {ModelNameSpace} \t");
+            sw.WriteLine("{ \t");
+            sw.WriteLine("    public partial class CoreDbContext : DbContext\t");
+            sw.WriteLine("    {\t");
+            sw.WriteLine("              public static string ConStr { get; set; }\t");
+            sw.WriteLine("              public CoreDbContext() { }\t");
+            sw.WriteLine("              public CoreDbContext(DbContextOptions<CoreDbContext> options): base(options){}\t");         
+            foreach (var item in tableList)
+            {
+                sw.WriteLine("        public virtual DbSet<"+item.TableName+">  "+item.TableName + " { get; set; }\t");
+            }
+            sw.WriteLine("          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)\t");
+            sw.WriteLine("          {\t");
+            sw.WriteLine("                optionsBuilder.UseSqlServer(ConStr, b => b.UseRowNumberForPaging()); \t");
+            sw.WriteLine("          }\t");
+            sw.WriteLine("          protected override void OnModelCreating(ModelBuilder modelBuilder){}\t");
+            sw.WriteLine("    }\t");
+            sw.WriteLine("}\t");         
+            sw.Flush();
+            sw.Close();
+        }
+
+        /// <summary>
+        /// 写入EF上下文
+        /// </summary>
+        /// <param name="tableList"></param>
+        private void WriteEFContext(List<DatabaseTable> tableList)
+        {
+            if (System.IO.File.Exists(@"d:\DbCenter\Service\EFDbContext.cs")) { System.IO.File.Delete(@"d:\DbCenter\Service\EFDbContext.cs"); }
+            FileStream fs = new FileStream("d:\\DbCenter\\Service\\EFDbContext.cs", FileMode.OpenOrCreate);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("//------------------------------------------------------------------------------ \t");
+            sw.WriteLine("//    描述：EF上下文 \t");
+            sw.WriteLine("//    作者：杨隆健 \t");
+            sw.WriteLine("//------------------------------------------------------------------------------ \t");
+            sw.WriteLine("using System; \t");
+            sw.WriteLine("using System.Data.Entity; \t");
+            sw.WriteLine("using System.Data.Entity.Infrastructure; \t");
+            sw.WriteLine($"namespace {ModelNameSpace} \t");
+            sw.WriteLine("{ \t");
+            sw.WriteLine("    public partial class EFDbContext : DbContext\t");
+            sw.WriteLine("    {\t");
+            sw.WriteLine("              public EFDbContext(): base(\"EFDbContext\"){}\t");
+            foreach (var item in tableList)
+            {
+                sw.WriteLine("        public virtual DbSet<" + item.TableName + ">  " + item.TableName + " { get; set; }\t");
+            }
+            sw.WriteLine("          protected override void OnModelCreating(DbModelBuilder modelBuilder){}\t");
+            sw.WriteLine("    }\t");
+            sw.WriteLine("}\t");
+            sw.Flush();
+            sw.Close();
         }
 
         /// <summary>
@@ -276,7 +348,7 @@ namespace DbManager.Controllers
             d.Add("money", "Decimal");
             d.Add("smallmoney", "Decimal");
             d.Add("bit", "Boolean");
-            d.Add("tinyint", "Object");
+            d.Add("tinyint", "Byte");
             d.Add("bigint", "Int64");
             d.Add("timestamp", "Binary");
             d.Add("binary", "Binary");
@@ -322,6 +394,8 @@ namespace DbManager.Controllers
 
                 WriteIDal(tableList);
                 WriteDal(tableList);
+                WriteDbSession(tableList);
+                WriteIDbSession(tableList);
                 WriteIBll(tableList);
                 WriteBll(tableList);
             }
@@ -384,6 +458,71 @@ namespace DbManager.Controllers
         }
 
         /// <summary>
+        /// 写入IDbSession接口
+        /// </summary>
+        /// <param name="tableList"></param>
+        private void WriteIDbSession(List<DatabaseTable> tableList)
+        {
+            if (System.IO.File.Exists(@"d:\DbCenter\Service\IDbSession.cs")) { System.IO.File.Delete(@"d:\DbCenter\Service\IDbSession.cs"); }
+            FileStream fs = new FileStream("d:\\DbCenter\\Service\\IDbSession.cs", FileMode.OpenOrCreate);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("//------------------------------------------------------------------------------ \t");
+            sw.WriteLine("//    描述：DbSession简单工厂 \t");
+            sw.WriteLine("//    作者：杨隆健 \t");
+            sw.WriteLine("//------------------------------------------------------------------------------ \t");
+            sw.WriteLine($"namespace {DALNameSpace} \t");
+            sw.WriteLine("{ \t");
+            sw.WriteLine("     public partial interface IDbSession \t");
+            sw.WriteLine("     {\t");
+            sw.WriteLine("         int SaveChanges();\t");
+            foreach (var item in tableList)
+            {
+                sw.WriteLine("      I" + item.TableName + "Dal " + item.TableName + "Dal{get;} \t");
+            }
+            sw.WriteLine("     }\t");
+            sw.WriteLine("}\t");
+            sw.Flush();
+            sw.Close();
+        }
+
+        /// <summary>
+        /// 写入DbSession实现类
+        /// </summary>
+        /// <param name="tableList"></param>
+        private void WriteDbSession(List<DatabaseTable> tableList)
+        {
+            if (System.IO.File.Exists(@"d:\DbCenter\Service\DbSession.cs")) { System.IO.File.Delete(@"d:\DbCenter\Service\DbSession.cs"); }
+            FileStream fs = new FileStream("d:\\DbCenter\\Service\\DbSession.cs", FileMode.OpenOrCreate);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("//------------------------------------------------------------------------------ \t");
+            sw.WriteLine("//    描述：DbSession简单工厂 \t");
+            sw.WriteLine("//    作者：杨隆健 \t");
+            sw.WriteLine("//------------------------------------------------------------------------------ \t");
+            sw.WriteLine("//根据项目框架自行选择命名空间 \t");
+            sw.WriteLine($"//using System.Data.Entity; \t");
+            sw.WriteLine($"//using Microsoft.EntityFrameworkCore; \t");
+            sw.WriteLine($"using {ModelNameSpace}; \t");
+            sw.WriteLine($"namespace {DALNameSpace} \t");
+            sw.WriteLine("{ \t");
+            sw.WriteLine("     public partial class DbSession : IDbSession\t");
+            sw.WriteLine("     {\t");
+            sw.WriteLine("             public int SaveChanges()\t");
+            sw.WriteLine("             {\t");
+            sw.WriteLine("                 DbContext dbContext = EFDbContextFactory.GetCurrentDbContext(); \t");
+            sw.WriteLine("                 return dbContext.SaveChanges(); \t");
+            sw.WriteLine("             }\t");
+            foreach (var item in tableList)
+            {
+                sw.WriteLine("         public I" + item.TableName + "Dal " + item.TableName + "Dal=>new " + item.TableName + "Dal(); \t");
+            }
+            sw.WriteLine("     }\t");
+            sw.WriteLine("}\t");
+            sw.Flush();
+            sw.Close();
+        }
+
+
+        /// <summary>
         /// 写入业务层接口
         /// </summary>
         /// <param name="tableList"></param>
@@ -426,7 +565,7 @@ namespace DbManager.Controllers
             sw.WriteLine("{ \t");
             foreach (var item in tableList)
             {
-                sw.WriteLine("     public partial interface " + item.TableName + "Service : BaseService<" + item.TableName + ">,I" + item.TableName + "Service");
+                sw.WriteLine("     public partial class " + item.TableName + "Service : BaseService<" + item.TableName + ">,I" + item.TableName + "Service");
                 sw.WriteLine("     { \t");
                 sw.WriteLine("         public override void SetCurrentDal() { CurrentDal = DbSession." + item.TableName + "Dal; }\t");
                 sw.WriteLine("      } \t");
