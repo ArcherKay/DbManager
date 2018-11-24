@@ -141,7 +141,7 @@ db.getSelectKey = function (tableId, fieldName) {
             return '';
         }
         for (var j = 0; j < selectsArr.length; j++) {
-            var _id = fieldName !== undefined ? selectsArr[j][fieldName] : (m.Id === undefined ? m.ID : m.Id);
+        	var _id = fieldName !== undefined ? selectsArr[j][fieldName] : (selectsArr[j].Id === undefined ? selectsArr[j].ID : selectsArr[j].Id);
             ids += _id !== undefined ? _id + ',' : '';
         }
         if (ids !== "") {
